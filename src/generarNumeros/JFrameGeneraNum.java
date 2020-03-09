@@ -21,9 +21,9 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
 public class JFrameGeneraNum extends javax.swing.JFrame {
-    
+
     String matriz = "";
-    
+
     public JFrameGeneraNum() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -135,7 +135,7 @@ public class JFrameGeneraNum extends javax.swing.JFrame {
 
         rdB.setBackground(new java.awt.Color(255, 255, 255));
         rdB.setSelected(true);
-        rdB.setText("Sin Complemetos");
+        rdB.setText("Sin Repetir");
         rdB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBActionPerformed(evt);
@@ -327,15 +327,38 @@ public class JFrameGeneraNum extends javax.swing.JFrame {
             num1 = Integer.parseInt(txtNumero.getText());
             va1orInicial = Integer.parseInt(txtValorInicial.getText());
             valorFinal = Integer.parseInt(txtValorFinal.getText());
+            //            Numeros Enteros aleatorios
             if (rdBInt.isSelected() == true) {
-                clase.empezar(num1, va1orInicial, valorFinal,desimal);
-                matriz = clase.asignarNumeroEnter();
-                txttabla.setText(matriz + "");
-            } else if (rdBReal.isSelected() == true){
-                desimal = Integer.parseInt(NumReal.getText());
-                clase.empezar(num1, va1orInicial, valorFinal, desimal);
-                matriz = clase.asignarNumeroDecimal();
-                txttabla.setText(matriz + "");
+               
+//            Numeros enteros sin repetir  
+                if (rdB.isSelected() == true) {
+                    
+                    clase.empezarSin(num1, va1orInicial, valorFinal, desimal);
+                    matriz = clase.asignarNumeroEnter();
+                    txttabla.setText(matriz + "");
+//              Numeros enteros repetidos
+                } else {
+                    
+                    clase.empezar(num1, va1orInicial, valorFinal, desimal);
+                    matriz = clase.asignarNumeroEnter();
+                    txttabla.setText(matriz + "");
+                }
+                //            Numeros Decimales aleatorios
+            } else {
+          //            Numeros desimales sin repetir     
+                if (rdB.isSelected() == true) {
+                   
+                    desimal = Integer.parseInt(NumReal.getText());
+                    clase.empezarSin(num1, va1orInicial, valorFinal, desimal);
+                    matriz = clase.asignarNumeroDecimal();
+                    txttabla.setText(matriz + "");
+                } else {
+                    //            Numeros decimales repetidos 
+                    desimal = Integer.parseInt(NumReal.getText());
+                    clase.empezar(num1, va1orInicial, valorFinal, desimal);
+                    matriz = clase.asignarNumeroDecimal();
+                    txttabla.setText(matriz + "");
+                }
             }
 
         } else {
@@ -388,9 +411,9 @@ public class JFrameGeneraNum extends javax.swing.JFrame {
             fichero = new FileWriter("archivo.txt");
             pw = new PrintWriter(fichero);
 
-            
 //            for (int i = 0; i < matriz; i++) {
-                pw.println(matriz);
+            pw.println(matriz);
+            JOptionPane.showMessageDialog(null, "Archivo creado ... ");
 //            }
 
         } catch (Exception e) {

@@ -16,7 +16,7 @@ public class SuperClase {
 
     public boolean mayor(int num1, int va1orInicial, int valorFinal) {
         int absoluto = Math.abs(va1orInicial) + Math.abs(valorFinal);
-        
+
         return absoluto >= num1 ? true : false;
     }
 
@@ -60,9 +60,20 @@ public class SuperClase {
 
         myNumbers = new double[num1];
 
+        for (i = 0; i < num1; i++) {
+            myNumbers[i] = formatearDecimales(generarNumerosAleatorioDoub(va1orInicial, valorFinal), desimal);
+
+        }
+    }
+
+    public void empezarSin(int num1, int va1orInicial, int valorFinal, int desimal) {
+        int i = 0;
+
+        myNumbers = new double[num1];
+
         if (mayor(num1, va1orInicial, valorFinal)) {
             myNumbers[i] = formatearDecimales(generarNumerosAleatorioDoub(va1orInicial, valorFinal), desimal);
-           
+
             for (i = 1; i < num1; i++) {
                 myNumbers[i] = formatearDecimales(generarNumerosAleatorioDoub(va1orInicial, valorFinal), desimal);
 
